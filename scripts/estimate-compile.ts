@@ -11,7 +11,7 @@ async function runEstimateAndCompile() {
     const options = {
         gasPrice: deploymentEstimation.gasPrice.toNumber(),
         gasLimit: Math.round(deploymentEstimation.gasLimit.toNumber() * 1.4),
-        nonce: 7 // TODO - if deployment wallet is the same as suitcase-contract, nonce is the current wallet nonce + 2. 
+        nonce: 39 // TODO - if deployment wallet is the same as suitcase-contract, nonce is the current wallet nonce + 2. 
                  // If it is different, here is the nonce of suitcase-contract deployment wallet + 1.
     }
     await createDeploymentTransaction(deploymentEstimation.chainId, options)
