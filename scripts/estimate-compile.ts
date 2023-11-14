@@ -11,7 +11,7 @@ async function runEstimateAndCompile() {
     const options = {
         gasPrice: deploymentEstimation.gasPrice.toNumber(),
         gasLimit: Math.round(deploymentEstimation.gasLimit.toNumber() * 1.4),
-        nonce: 0
+        nonce: 1
     }
     await createDeploymentTransaction(deploymentEstimation.chainId, options)
 }
