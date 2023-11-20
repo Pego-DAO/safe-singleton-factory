@@ -1,3 +1,5 @@
+*For Pego Network deployment, see `pego-deployment.md`*
+
 # Safe Singleton Factory
 
 Singleton factory used by Safe related contracts based on https://github.com/Arachnid/deterministic-deployment-proxy
