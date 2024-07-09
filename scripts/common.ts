@@ -56,12 +56,13 @@ async function writeFactoryDeployerTransaction(contract: CompilerOutputContract,
 
 export async function estimateDeploymentTransaction(rpcUrl: string): Promise<DeploymentEstimation> {
 	const provider = new ethers.providers.JsonRpcProvider(rpcUrl)
+	const signer = new ethers.Wallet("", provider); // Provide wallet pk
 	const chainId = (await provider.getNetwork()).chainId
 	console.log({chainId})
 	const compilerOutput = await compileContracts()
 	const contract = compilerOutput.contracts['deterministic-deployment-proxy.yul']['Proxy']
 	const data = "0x" + contract.evm.bytecode.object
-	const gasLimit = await provider.estimateGas({ data })
+	const gasLimit = await signer.estimateGas({ data }) // Use specific wallet to get gas estimation because only whitelisted address can deploy contract on PDA.
 	console.log({estimate: gasLimit.toString() })
 	const gasPrice = await provider.getGasPrice()
 	console.log({gasPriceGwei: ethers.utils.formatUnits(gasPrice, "gwei"), gasPrice: gasPrice.toString() })
